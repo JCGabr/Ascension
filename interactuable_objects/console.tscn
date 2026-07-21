@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://lqd71ggnd5ua"]
+
+[ext_resource type="Script" uid="uid://b746pstatgpus" path="res://interactuable_objects/console.gd" id="1_oyp7n"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_75kqj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jsqwt"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jsqwt"]
+viewport_path = NodePath("SubViewport")
+
+[node name="Console" type="StaticBody3D" unique_id=708724288]
+collision_layer = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=975890543]
+mesh = SubResource("BoxMesh_75kqj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=812657111]
+shape = SubResource("BoxShape3D_jsqwt")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=554134644]
+
+[node name="Control" type="Control" parent="SubViewport" unique_id=1353842458 node_paths=PackedStringArray("centro") groups=["radar_target"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oyp7n")
+centro = NodePath("../..")
+rango_deteccion = 25.0
+
+[node name="Console" type="Sprite3D" parent="." unique_id=2468641]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0.5140673)
+texture = SubResource("ViewportTexture_jsqwt")
+
+[node name="Pivot" type="Node3D" parent="." unique_id=964519638]
+transform = Transform3D(0.2, 0, 0, 0, 0.1857615, 0.07411253, 0, -0.07411253, 0.1857615, 0, 0.6045097, 1.4629549)

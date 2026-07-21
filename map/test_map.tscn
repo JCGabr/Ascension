@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://dce1xmy577gvx"]
+
+[ext_resource type="Script" uid="uid://dih1db2nuqdm0" path="res://map/base.gd" id="1_qyrbn"]
+[ext_resource type="PackedScene" uid="uid://dvkwcyjti5svh" path="res://player/player.tscn" id="1_r1p3x"]
+[ext_resource type="PackedScene" uid="uid://lqd71ggnd5ua" path="res://interactuable_objects/console.tscn" id="2_qyrbn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4qc02"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_4wuf8"]
+sky_material = SubResource("ProceduralSkyMaterial_4qc02")
+
+[sub_resource type="Environment" id="Environment_s02eq"]
+background_mode = 2
+sky = SubResource("Sky_4wuf8")
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_75kqj"]
+size = Vector2(20, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_eflb2"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
+[sub_resource type="Animation" id="Animation_r1p3x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qyrbn"]
+resource_name = "shake"
+length = 0.46666667
+loop_mode = 2
+step = 0.0333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.16666667, 0.3, 0.46666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.04363323), Vector3(0, 0, -0.0034906585), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_67hre"]
+_data = {
+&"RESET": SubResource("Animation_r1p3x"),
+&"shake": SubResource("Animation_qyrbn")
+}
+
+[node name="Submarine" type="Node3D" unique_id=1964483830 node_paths=PackedStringArray("animation_player", "player")]
+script = ExtResource("1_qyrbn")
+animation_player = NodePath("AnimationPlayer")
+player = NodePath("Node3D")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=642533113]
+environment = SubResource("Environment_s02eq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=164681471]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=684180700]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1007055741]
+mesh = SubResource("PlaneMesh_75kqj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1238421189]
+shape = SubResource("ConcavePolygonShape3D_eflb2")
+
+[node name="Node3D" parent="." unique_id=2006900859 instance=ExtResource("1_r1p3x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=605216727]
+transform = Transform3D(1, 0, 0, 0, 0.8394661, 0.543412, 0, -0.543412, 0.8394661, 0, 5.3128037, 9.509259)
+
+[node name="Console" parent="." unique_id=708724288 instance=ExtResource("2_qyrbn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
+
+[node name="Target" type="Node3D" parent="." unique_id=1175291539 groups=["radar_target"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1412102744]
+libraries/ = SubResource("AnimationLibrary_67hre")
