@@ -7,7 +7,6 @@ extends CharacterBody3D
 @export var interact_action: String = "right_click"
 
 const SPEED = 5.0
-const JUMP_VELOCITY = 4.5
 const TRANSITION_TIME = 0.6
 
 var is_interacting := false
@@ -51,7 +50,7 @@ func exit_pivot_view() -> void:
 	if not is_interacting:
 		return
 
-	camera.reparent(head) # mantiene transform global -> no hay salto visual
+	camera.reparent(head)
 
 	if tween:
 		tween.kill()
@@ -69,8 +68,6 @@ func exit_pivot_view() -> void:
 func basic_movement(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
 	var input_dir := Input.get_vector("left", "right", "up", "down")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
@@ -83,6 +80,7 @@ func basic_movement(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_interacting:
+		visible = false
 		interaction_input_while_pivoted()
 		return
 	basic_movement(delta)
@@ -90,4 +88,6 @@ func _physics_process(delta: float) -> void:
 
 func interaction_input_while_pivoted() -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
+		visible = true
 		exit_pivot_view()
+		

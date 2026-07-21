@@ -44,7 +44,7 @@ _data = {
 &"shake": SubResource("Animation_g1dw6")
 }
 
-[node name="Node3D" type="CharacterBody3D" unique_id=2006900859 node_paths=PackedStringArray("animation_player", "head", "camera", "ray_cast_3d")]
+[node name="Player" type="CharacterBody3D" unique_id=2006900859 node_paths=PackedStringArray("animation_player", "head", "camera", "ray_cast_3d")]
 script = ExtResource("1_4flbx")
 animation_player = NodePath("AnimationPlayer")
 head = NodePath("Head")
@@ -62,6 +62,7 @@ script = ExtResource("2_onrkg")
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=1617232396]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+far = 50.0
 
 [node name="RayCast3D" type="RayCast3D" parent="Head" unique_id=557788338]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)

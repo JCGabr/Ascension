@@ -4,24 +4,24 @@
 [ext_resource type="PackedScene" uid="uid://dvkwcyjti5svh" path="res://player/player.tscn" id="1_r1p3x"]
 [ext_resource type="PackedScene" uid="uid://lqd71ggnd5ua" path="res://interactuable_objects/console.tscn" id="2_qyrbn"]
 [ext_resource type="Shader" uid="uid://imi872kt56kx" path="res://shader/pixel_tv.gdshader" id="4_67hre"]
+[ext_resource type="PackedScene" uid="uid://efqnyx8d4u4a" path="res://interactuable_objects/enemies.tscn" id="5_vv62k"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4qc02"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vv62k"]
+sky_top_color = Color(0, 0.02745098, 0.23137255, 1)
+sky_horizon_color = Color(0.041988034, 0.047325786, 0.12714107, 1)
+ground_bottom_color = Color(0.008098451, 0.0019984911, 0.117338054, 1)
+ground_horizon_color = Color(0.041988034, 0.047325786, 0.12714107, 1)
 
-[sub_resource type="Sky" id="Sky_4wuf8"]
-sky_material = SubResource("ProceduralSkyMaterial_4qc02")
+[sub_resource type="Sky" id="Sky_1cmj6"]
+sky_material = SubResource("ProceduralSkyMaterial_vv62k")
 
-[sub_resource type="Environment" id="Environment_s02eq"]
-background_mode = 2
-sky = SubResource("Sky_4wuf8")
-glow_enabled = true
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_75kqj"]
-size = Vector2(20, 20)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_eflb2"]
-data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+[sub_resource type="Environment" id="Environment_1yi38"]
+background_mode = 1
+sky = SubResource("Sky_1cmj6")
+sky_rotation = Vector3(0, 1.5707964, 0)
+tonemap_mode = 2
+ssao_enabled = true
+sdfgi_enabled = true
 
 [sub_resource type="Animation" id="Animation_r1p3x"]
 length = 0.001
@@ -62,6 +62,12 @@ _data = {
 &"shake": SubResource("Animation_qyrbn")
 }
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_75kqj"]
+size = Vector2(20, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_eflb2"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1cmj6"]
 shader = ExtResource("4_67hre")
 shader_parameter/pixel_size = 3.50000011875
@@ -74,17 +80,19 @@ shader_parameter/vignette_softness = 0.5
 shader_parameter/noise_amount = 0.03
 shader_parameter/brightness = 1.1
 
-[node name="Submarine" type="Node3D" unique_id=1964483830 node_paths=PackedStringArray("animation_player", "player")]
+[node name="Submarine" type="Node3D" unique_id=1964483830 node_paths=PackedStringArray("animation_player", "player", "enemies")]
 script = ExtResource("1_qyrbn")
 animation_player = NodePath("AnimationPlayer")
-player = NodePath("Node3D")
+player = NodePath("Player")
+enemies = NodePath("Enemies")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=642533113]
-environment = SubResource("Environment_s02eq")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1740245433]
+environment = SubResource("Environment_1yi38")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=164681471]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-shadow_enabled = true
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1412102744]
+libraries/ = SubResource("AnimationLibrary_67hre")
+
+[node name="Environment" type="Node3D" parent="." unique_id=2081633461]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=684180700]
 
@@ -94,20 +102,11 @@ mesh = SubResource("PlaneMesh_75kqj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1238421189]
 shape = SubResource("ConcavePolygonShape3D_eflb2")
 
-[node name="Node3D" parent="." unique_id=2006900859 instance=ExtResource("1_r1p3x")]
+[node name="Player" parent="." unique_id=2006900859 instance=ExtResource("1_r1p3x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=605216727]
-transform = Transform3D(1, 0, 0, 0, 0.8394661, 0.543412, 0, -0.543412, 0.8394661, 0, 5.3128037, 9.509259)
 
 [node name="Console" parent="." unique_id=708724288 instance=ExtResource("2_qyrbn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
-
-[node name="Target" type="Node3D" parent="." unique_id=1175291539 groups=["radar_target"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1412102744]
-libraries/ = SubResource("AnimationLibrary_67hre")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=870450182]
 
@@ -119,3 +118,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Enemies" parent="." unique_id=798653961 instance=ExtResource("5_vv62k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.13726, 0, 0)
