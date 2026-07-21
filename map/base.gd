@@ -6,3 +6,4 @@ extends Node3D
 func _ready() -> void:
 	animation_player.play("shake")
 	player.animation_player.play("shake")
+	AudioManager.play_ambient("underwater_deep")
