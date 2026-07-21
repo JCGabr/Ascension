@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dih1db2nuqdm0" path="res://map/base.gd" id="1_qyrbn"]
 [ext_resource type="PackedScene" uid="uid://dvkwcyjti5svh" path="res://player/player.tscn" id="1_r1p3x"]
-[ext_resource type="PackedScene" uid="uid://lqd71ggnd5ua" path="res://interactuable_objects/console.tscn" id="2_qyrbn"]
 [ext_resource type="PackedScene" uid="uid://bqwv6gkc0318f" path="res://interactuable_objects/submarine.tscn" id="4_67hre"]
 [ext_resource type="PackedScene" uid="uid://efqnyx8d4u4a" path="res://interactuable_objects/enemies.tscn" id="5_vv62k"]
 [ext_resource type="Shader" uid="uid://imi872kt56kx" path="res://shader/pixel_tv.gdshader" id="6_1cmj6"]
@@ -91,9 +90,6 @@ libraries/ = SubResource("AnimationLibrary_67hre")
 
 [node name="Player" parent="." unique_id=2006900859 instance=ExtResource("1_r1p3x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-
-[node name="Console" parent="." unique_id=708724288 instance=ExtResource("2_qyrbn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -4)
 
 [node name="Enemies" parent="." unique_id=798653961 instance=ExtResource("5_vv62k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.13726, 0, 0)

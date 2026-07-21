@@ -32,7 +32,7 @@ extends Control
 ## --- ESTILO ------------------------------------------------------------
 
 @export_group("Estilo")
-@export var color_fondo: Color = Color(0.02, 0.08, 0.03, 0.85)
+@export var color_fondo: Color = Color(0.02, 0.08, 0.03, 1)
 @export var color_borde: Color = Color(0.2, 1.0, 0.3, 1.0)
 @export var color_lineas: Color = Color(0.2, 1.0, 0.3, 0.35)
 @export var color_barrido: Color = Color(0.2, 1.0, 0.3, 0.5)

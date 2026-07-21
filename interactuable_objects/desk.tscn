@@ -1,5 +1,29 @@
 [gd_scene format=3 uid="uid://4pfga1claksh"]
 
 [ext_resource type="PackedScene" uid="uid://dh83jhef1mh2x" path="res://models/desk/desk.glb" id="1_5gtkk"]
+[ext_resource type="Script" uid="uid://b746pstatgpus" path="res://interactuable_objects/console.gd" id="2_oxqpy"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_icyra"]
+viewport_path = NodePath("SubViewport")
 
 [node name="desk" unique_id=1530631075 instance=ExtResource("1_5gtkk")]
+
+[node name="SubViewport" type="SubViewport" parent="." index="1" unique_id=1273167223]
+
+[node name="Control" type="Control" parent="SubViewport" index="0" unique_id=435166862 node_paths=PackedStringArray("centro") groups=["radar_target"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_oxqpy")
+centro = NodePath("../..")
+rango_deteccion = 25.0
+
+[node name="Console" type="Sprite3D" parent="." index="2" unique_id=1747357471]
+transform = Transform3D(3.1524873, 0, 0, 0, 2.4808822, 0.30858254, 0, -0.30858254, 2.4808822, 0, 14.246897, -19.207405)
+texture = SubResource("ViewportTexture_icyra")
+
+[node name="Pivot" type="Node3D" parent="." index="3" unique_id=2141306721]
+transform = Transform3D(0.2, 0, 0, 0, 0.1857615, 0.07411253, 0, -0.07411253, 0.1857615, 0, 0.6045097, 1.4629549)
