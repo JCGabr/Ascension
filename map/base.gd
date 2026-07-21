@@ -14,3 +14,4 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	enemies.position += Vector3(5,0,0) * delta 
+	AudioManager.play_ambient("underwater_deep")

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dih1db2nuqdm0" path="res://map/base.gd" id="1_qyrbn"]
 [ext_resource type="PackedScene" uid="uid://dvkwcyjti5svh" path="res://player/player.tscn" id="1_r1p3x"]
 [ext_resource type="PackedScene" uid="uid://lqd71ggnd5ua" path="res://interactuable_objects/console.tscn" id="2_qyrbn"]
-[ext_resource type="Shader" uid="uid://imi872kt56kx" path="res://shader/pixel_tv.gdshader" id="4_67hre"]
+[ext_resource type="PackedScene" uid="uid://bqwv6gkc0318f" path="res://interactuable_objects/submarine.tscn" id="4_67hre"]
 [ext_resource type="PackedScene" uid="uid://efqnyx8d4u4a" path="res://interactuable_objects/enemies.tscn" id="5_vv62k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vv62k"]
@@ -69,16 +69,6 @@ size = Vector2(20, 20)
 data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1cmj6"]
-shader = ExtResource("4_67hre")
-shader_parameter/pixel_size = 3.50000011875
-shader_parameter/curvature = 4.0
-shader_parameter/scanline_count = 230.518008574605
-shader_parameter/scanline_intensity = 0.3
-shader_parameter/chromatic_aberration = 0.003
-shader_parameter/vignette_strength = 0.8
-shader_parameter/vignette_softness = 0.5
-shader_parameter/noise_amount = 0.03
-shader_parameter/brightness = 1.1
 
 [node name="Submarine" type="Node3D" unique_id=1964483830 node_paths=PackedStringArray("animation_player", "player", "enemies")]
 script = ExtResource("1_qyrbn")
@@ -121,3 +111,9 @@ mouse_filter = 2
 
 [node name="Enemies" parent="." unique_id=798653961 instance=ExtResource("5_vv62k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.13726, 0, 0)
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." unique_id=654159342]
+libraries/ = SubResource("AnimationLibrary_67hre")
+
+[node name="submarine" parent="." unique_id=340219670 instance=ExtResource("4_67hre")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
