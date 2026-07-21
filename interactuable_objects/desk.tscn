@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://4pfga1claksh"]
+
+[ext_resource type="PackedScene" uid="uid://dh83jhef1mh2x" path="res://models/desk/desk.glb" id="1_5gtkk"]
+
+[node name="desk" unique_id=1530631075 instance=ExtResource("1_5gtkk")]

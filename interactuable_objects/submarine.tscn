@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bqwv6gkc0318f"]
 
 [ext_resource type="PackedScene" uid="uid://qfmlceb70ous" path="res://models/submarine/submarine.glb" id="1_t88qw"]
+[ext_resource type="PackedScene" uid="uid://4pfga1claksh" path="res://interactuable_objects/desk.tscn" id="2_3ngao"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7lpfj"]
 size = Vector3(2.2797852, 0.67407227, 4.197937)
@@ -47,6 +48,9 @@ shape = SubResource("BoxShape3D_btcgt")
 [node name="techo" type="CollisionShape3D" parent="StaticBody3D" index="5" unique_id=1502543978]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03337097, 0.877388, -0.01184082)
 shape = SubResource("BoxShape3D_4ck0j")
+
+[node name="desk" parent="StaticBody3D" index="6" unique_id=1530631075 instance=ExtResource("2_3ngao")]
+transform = Transform3D(-0.03, 0, -4.529874e-09, 0, 0.03, 0, 4.529874e-09, 0, -0.03, 0.0008435324, 0.033424415, 1.7)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." index="2" unique_id=434782377]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.9841517, 0)
