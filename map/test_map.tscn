@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dih1db2nuqdm0" path="res://map/base.gd" id="1_qyrbn"]
 [ext_resource type="PackedScene" uid="uid://dvkwcyjti5svh" path="res://player/player.tscn" id="1_r1p3x"]
 [ext_resource type="PackedScene" uid="uid://lqd71ggnd5ua" path="res://interactuable_objects/console.tscn" id="2_qyrbn"]
+[ext_resource type="Shader" uid="uid://imi872kt56kx" path="res://shader/pixel_tv.gdshader" id="4_67hre"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4qc02"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -61,6 +62,18 @@ _data = {
 &"shake": SubResource("Animation_qyrbn")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1cmj6"]
+shader = ExtResource("4_67hre")
+shader_parameter/pixel_size = 3.50000011875
+shader_parameter/curvature = 4.0
+shader_parameter/scanline_count = 230.518008574605
+shader_parameter/scanline_intensity = 0.3
+shader_parameter/chromatic_aberration = 0.003
+shader_parameter/vignette_strength = 0.8
+shader_parameter/vignette_softness = 0.5
+shader_parameter/noise_amount = 0.03
+shader_parameter/brightness = 1.1
+
 [node name="Submarine" type="Node3D" unique_id=1964483830 node_paths=PackedStringArray("animation_player", "player")]
 script = ExtResource("1_qyrbn")
 animation_player = NodePath("AnimationPlayer")
@@ -95,3 +108,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1412102744]
 libraries/ = SubResource("AnimationLibrary_67hre")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=870450182]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=231204092]
+material = SubResource("ShaderMaterial_1cmj6")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

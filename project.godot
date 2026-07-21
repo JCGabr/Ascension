@@ -21,6 +21,8 @@ EventSystem="*uid://meljfqs072yo"
 
 [display]
 
+window/size/viewport_width=1600
+window/size/viewport_height=1000
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
