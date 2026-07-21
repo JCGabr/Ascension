@@ -10,7 +10,7 @@ var sfx_library = {
 
 var ambient_library = {
 	"underwater_deep": preload("res://audio/deep-sea.mp3"),
-
+	"cinematic-sound": preload("res://audio/cinematic-soundscape.mp3"),
 }
 var sfx_player: AudioStreamPlayer
 var ambient_player: AudioStreamPlayer

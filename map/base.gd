@@ -10,8 +10,8 @@ func shake() -> void:
 	player.animation_player.play("shake")
 	
 func _ready() -> void:
+	AudioManager.play_ambient("cinematic-sound")
 	pass
 
 func _physics_process(delta: float) -> void:
 	enemies.position += Vector3(5,0,0) * delta 
-	AudioManager.play_ambient("underwater_deep")
