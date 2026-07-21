@@ -2,9 +2,20 @@
 
 [ext_resource type="PackedScene" uid="uid://dh83jhef1mh2x" path="res://models/desk/desk.glb" id="1_5gtkk"]
 [ext_resource type="Script" uid="uid://b746pstatgpus" path="res://interactuable_objects/console.gd" id="2_oxqpy"]
+[ext_resource type="PackedScene" uid="uid://dpipepu00le01" path="res://interactuable_objects/pipe_puzzle_godot/PuzzleGrid.tscn" id="3_icyra"]
+[ext_resource type="Script" uid="uid://wn2pygss68f2" path="res://scripts/ScreenInputRelay.gd" id="4_eh24t"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_icyra"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_eh24t"]
+viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_75kqj"]
+size = Vector3(30, 15, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_icyra"]
+size = Vector3(12, 1, 10)
 
 [node name="desk" unique_id=1530631075 instance=ExtResource("1_5gtkk")]
 
@@ -21,9 +32,47 @@ script = ExtResource("2_oxqpy")
 centro = NodePath("../..")
 rango_deteccion = 25.0
 
-[node name="Console" type="Sprite3D" parent="." index="2" unique_id=1747357471]
+[node name="SubViewport2" type="SubViewport" parent="." index="2" unique_id=923494636]
+
+[node name="PuzzleGrid" parent="SubViewport2" index="0" unique_id=819256787 instance=ExtResource("3_icyra")]
+
+[node name="Console" type="Sprite3D" parent="." index="3" unique_id=1747357471]
 transform = Transform3D(3.1524873, 0, 0, 0, 2.4808822, 0.30858254, 0, -0.30858254, 2.4808822, 0, 14.246897, -19.207405)
 texture = SubResource("ViewportTexture_icyra")
 
-[node name="Pivot" type="Node3D" parent="." index="3" unique_id=2141306721]
-transform = Transform3D(0.2, 0, 0, 0, 0.1857615, 0.07411253, 0, -0.07411253, 0.1857615, 0, 0.6045097, 1.4629549)
+[node name="Pipes" type="Sprite3D" parent="." index="4" unique_id=2143891020]
+transform = Transform3D(2.3, 0, 0, 0, -6.9938224e-08, -2.3, 0, 1.6, -1.0053619e-07, -13.173183, 0.07825661, -3.6690178)
+texture = SubResource("ViewportTexture_eh24t")
+
+[node name="ConsoleCollision" type="StaticBody3D" parent="." index="5" unique_id=997897574]
+collision_layer = 4
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ConsoleCollision" index="0" unique_id=2082434325]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.107635, -16.673058)
+shape = SubResource("BoxShape3D_75kqj")
+
+[node name="Pivot" type="Node3D" parent="ConsoleCollision" index="1" unique_id=868882092]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, -3.5)
+
+[node name="Relay" type="Node3D" parent="ConsoleCollision" index="2" unique_id=701384094 node_paths=PackedStringArray("target_sprite", "target_viewport")]
+script = ExtResource("4_eh24t")
+target_sprite = NodePath("../../Console")
+target_viewport = NodePath("../../SubViewport")
+
+[node name="PipesCollision" type="StaticBody3D" parent="." index="6" unique_id=710868411]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.100468, 0.2097032, -3.5267675)
+collision_layer = 4
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PipesCollision" index="0" unique_id=1589496638]
+shape = SubResource("BoxShape3D_icyra")
+
+[node name="Pivot" type="Node3D" parent="PipesCollision" index="1" unique_id=2141306721]
+transform = Transform3D(0.2, 0, 0, 0, -8.742278e-09, 0.2, 0, -0.2, -8.742278e-09, 0.10046768, 5.7902966, -0.4732325)
+
+[node name="Relay" type="Node3D" parent="PipesCollision" index="2" unique_id=2001482810 node_paths=PackedStringArray("target_sprite", "target_viewport")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.100468, -0.2097032, 3.5267675)
+script = ExtResource("4_eh24t")
+target_sprite = NodePath("../../Pipes")
+target_viewport = NodePath("../../SubViewport2")

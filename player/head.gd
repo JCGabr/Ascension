@@ -19,12 +19,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		var pitch_delta: float = motion.y * mouse_sensitivity
 		if invert_y:
 			pitch_delta = -pitch_delta
-
 		if only_pitch_here:
 			rot_x -= pitch_delta
 			rot_x = clamp(rot_x, deg_to_rad(min_pitch), deg_to_rad(max_pitch))
 			rotation.x = rot_x
-
 			var body := get_parent()
 			if body and body is Node3D:
 				body.rotate_y(yaw_delta)
@@ -33,8 +31,3 @@ func _unhandled_input(event: InputEvent) -> void:
 			rot_x -= pitch_delta
 			rot_x = clamp(rot_x, deg_to_rad(min_pitch), deg_to_rad(max_pitch))
 			rotation.x = rot_x
-
-	if event.is_action_pressed("ui_cancel"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	if event is InputEventMouseButton and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

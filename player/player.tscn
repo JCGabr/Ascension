@@ -50,6 +50,7 @@ animation_player = NodePath("AnimationPlayer")
 head = NodePath("Head")
 camera = NodePath("Head/Camera3D")
 ray_cast_3d = NodePath("Head/RayCast3D")
+interact_action = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=307994930]
 mesh = SubResource("CapsuleMesh_75kqj")

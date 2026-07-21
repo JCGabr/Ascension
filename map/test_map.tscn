@@ -90,6 +90,7 @@ libraries/ = SubResource("AnimationLibrary_67hre")
 
 [node name="Player" parent="." unique_id=2006900859 instance=ExtResource("1_r1p3x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+interact_action = "right_click"
 
 [node name="Enemies" parent="." unique_id=798653961 instance=ExtResource("5_vv62k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -54.13726, 0, 0)
