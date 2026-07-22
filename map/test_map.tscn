@@ -129,7 +129,7 @@ movement_mode = 2
 fish_scene = ExtResource("8_rmuq2")
 path_speed = 1.5
 loop_from_start = false
-random_area = Vector3(8, 7, 5)
+random_area = Vector3(8, 7, 2)
 turn_smoothness = 2.0
 
 [node name="Criatura1" type="Node3D" parent="." unique_id=1589791879]
@@ -137,7 +137,7 @@ transform = Transform3D(6, 0, 0, 0, 5.981843, 0.46642208, 0, -0.46642208, 5.9818
 script = ExtResource("6_1yi38")
 movement_mode = 2
 fish_scene = ExtResource("9_08ope")
-random_area = Vector3(6, 8, 6)
+random_area = Vector3(6, 8, 2)
 turn_smoothness = 2.0
 
 [node name="Criatura2" type="Node3D" parent="." unique_id=166196550]
