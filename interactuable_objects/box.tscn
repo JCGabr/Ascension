@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://g2ild37b3oov"]
+
+[ext_resource type="PackedScene" uid="uid://meecv4g0hsr" path="res://models/box/small_fuse_box.glb" id="1_wf5dr"]
+
+[node name="box" unique_id=1835283106 instance=ExtResource("1_wf5dr")]
