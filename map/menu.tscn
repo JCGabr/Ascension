@@ -1,0 +1,179 @@
+[gd_scene load_steps=6 format=3 uid="uid://soept5vnffmd"]
+
+[ext_resource type="Script" uid="uid://bqisa7iue4duu" path="res://map/menu.gd" id="1_f1rai"]
+[ext_resource type="Shader" path="res://shader/tv.gdshader" id="2_tvshader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_overlay"]
+shader = ExtResource("2_tvshader")
+shader_parameter/curvature = 3.0
+shader_parameter/scanline_count = 320.0
+shader_parameter/scanline_intensity = 0.16
+shader_parameter/chromatic_aberration = 0.0015
+shader_parameter/vignette_strength = 1.1
+shader_parameter/vignette_softness = 0.7
+shader_parameter/noise_amount = 0.02
+shader_parameter/brightness = 0.95
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_panel"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+bg_color = Color(0.043, 0.067, 0.086, 0.55)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.243, 0.514, 0.494, 0.75)
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+content_margin_left = 36.0
+content_margin_top = 14.0
+content_margin_right = 36.0
+content_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+bg_color = Color(0.078, 0.129, 0.145, 0.75)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.4, 0.87, 0.8, 1.0)
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+content_margin_left = 36.0
+content_margin_top = 14.0
+content_margin_right = 36.0
+content_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
+bg_color = Color(0.02, 0.035, 0.045, 0.85)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.55, 0.95, 0.88, 1.0)
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+content_margin_left = 36.0
+content_margin_top = 14.0
+content_margin_right = 36.0
+content_margin_bottom = 14.0
+
+[node name="Menu" type="Control" unique_id=899521090]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_f1rai")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.023, 0.039, 0.055, 1)
+
+[node name="Panel" type="Panel" parent="." unique_id=436049149]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_panel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1928621688]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 28
+alignment = 1
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer" unique_id=1667020885]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.82, 0.93, 0.92, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_font_sizes/font_size = 90
+text = "A S C E N S I Ó N"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.42, 0.58, 0.58, 1)
+theme_override_font_sizes/font_size = 22
+text = "SOPORTE VITAL · PRESIÓN EN AUMENTO"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer" unique_id=387921559]
+layout_mode = 2
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="Jugar" type="Button" parent="Panel/VBoxContainer/HBoxContainer" unique_id=820253868]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.88, 0.87, 1)
+theme_override_colors/font_hover_color = Color(0.55, 0.95, 0.88, 1)
+theme_override_colors/font_pressed_color = Color(0.55, 0.95, 0.88, 1)
+theme_override_font_sizes/font_size = 44
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "JUGAR"
+
+[node name="Salir" type="Button" parent="Panel/VBoxContainer/HBoxContainer" unique_id=531457853]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.88, 0.87, 1)
+theme_override_colors/font_hover_color = Color(0.55, 0.95, 0.88, 1)
+theme_override_colors/font_pressed_color = Color(0.55, 0.95, 0.88, 1)
+theme_override_font_sizes/font_size = 44
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+theme_override_styles/focus = SubResource("StyleBoxFlat_btn_hover")
+text = "SALIR"
+
+[node name="Overlay" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_overlay")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 1, 1, 1)
+
+[node name="Fade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[connection signal="mouse_entered" from="Panel/VBoxContainer/HBoxContainer/Jugar" to="." method="_on_button_hover"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/Jugar" to="." method="_on_jugar_pressed"]
+[connection signal="mouse_entered" from="Panel/VBoxContainer/HBoxContainer/Salir" to="." method="_on_button_hover"]
+[connection signal="pressed" from="Panel/VBoxContainer/HBoxContainer/Salir" to="." method="_on_salir_pressed"]
