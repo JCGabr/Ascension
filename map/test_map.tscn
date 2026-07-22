@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bqwv6gkc0318f" path="res://interactuable_objects/submarine.tscn" id="4_67hre"]
 [ext_resource type="PackedScene" uid="uid://efqnyx8d4u4a" path="res://interactuable_objects/enemies.tscn" id="5_vv62k"]
 [ext_resource type="Shader" uid="uid://imi872kt56kx" path="res://shader/pixel_tv.gdshader" id="6_1cmj6"]
+[ext_resource type="Script" uid="uid://cqqg5awdhsn1l" path="res://models/fish group/fish_school.gd" id="6_1yi38"]
+[ext_resource type="PackedScene" uid="uid://d02t00wco5jby" path="res://models/fish group/the_fish_particle.glb" id="7_1yi38"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vv62k"]
 sky_top_color = Color(0, 0.02745098, 0.23137255, 1)
@@ -111,3 +113,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="FishSchool" type="Node3D" parent="." unique_id=453130437]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1.4351473, 0.30935836, -13.307428)
+script = ExtResource("6_1yi38")
+fish_scene = ExtResource("7_1yi38")
