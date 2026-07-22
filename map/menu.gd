@@ -1,6 +1,6 @@
 extends Control
 
-const GAME_SCENE_PATH := "res://map/test_map.tscn"
+const GAME_SCENE_PATH := "res://models/tv/IntroCutscene.tscn"
 const FADE_TIME := 0.8
 
 @onready var fade: ColorRect = $Fade
