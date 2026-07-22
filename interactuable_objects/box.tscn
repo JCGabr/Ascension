@@ -1,5 +1,80 @@
 [gd_scene format=3 uid="uid://g2ild37b3oov"]
 
 [ext_resource type="PackedScene" uid="uid://meecv4g0hsr" path="res://models/box/small_fuse_box.glb" id="1_wf5dr"]
+[ext_resource type="Script" uid="uid://cmn0rkhleo1ng" path="res://interactuable_objects/box.gd" id="2_2jpm0"]
 
-[node name="box" unique_id=1835283106 instance=ExtResource("1_wf5dr")]
+[sub_resource type="Animation" id="Animation_2jpm0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Collada visual scene group/fuse:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5707964, 2.0423183, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wf5dr"]
+resource_name = "close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Collada visual scene group/fuse:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5707964, 2.0423183, 0), Vector3(-1.5707964, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o3shs"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Collada visual scene group/fuse:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.5707964, 0, 0), Vector3(-1.5707964, 2.0420353, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2jpm0"]
+_data = {
+&"RESET": SubResource("Animation_2jpm0"),
+&"close": SubResource("Animation_wf5dr"),
+&"open": SubResource("Animation_o3shs")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7lpfj"]
+size = Vector3(25.594925, 52.32718, 39.329483)
+
+[node name="box" unique_id=1835283106 node_paths=PackedStringArray("animation_player") instance=ExtResource("1_wf5dr")]
+script = ExtResource("2_2jpm0")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="fuse" parent="Sketchfab_model/Collada visual scene group" parent_id_path=PackedInt32Array(639435075) index="0" unique_id=1605009430]
+transform = Transform3D(-45.424274, -89.0878, -3.894151e-06, 0, -4.371139e-06, 100, -89.0878, 45.424274, 1.9855581e-06, 18.004131, 2.060793, -16.247723)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=1972321855]
+root_node = NodePath("../Sketchfab_model")
+libraries/ = SubResource("AnimationLibrary_2jpm0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=173264085]
+collision_layer = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1702599482]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.691765, -0.5937042, 3.5250473)
+shape = SubResource("BoxShape3D_7lpfj")
+
+[node name="Pivot" type="Node3D" parent="StaticBody3D" index="1" unique_id=929262172]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 75, 0, 10)
