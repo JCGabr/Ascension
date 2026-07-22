@@ -123,7 +123,7 @@ script = ExtResource("6_1yi38")
 fish_scene = ExtResource("7_1yi38")
 
 [node name="MiniSquid" type="Node3D" parent="." unique_id=1021357982]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0.6458452, -13.479355)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0.6458452, -16.953377)
 script = ExtResource("6_1yi38")
 movement_mode = 2
 fish_scene = ExtResource("8_rmuq2")
@@ -133,7 +133,7 @@ random_area = Vector3(8, 7, 2)
 turn_smoothness = 2.0
 
 [node name="Criatura1" type="Node3D" parent="." unique_id=1589791879]
-transform = Transform3D(6, 0, 0, 0, 5.981843, 0.46642208, 0, -0.46642208, 5.981843, -0.7073624, 0.59087014, -12.549095)
+transform = Transform3D(6, 0, 0, 0, 5.981843, 0.46642208, 0, -0.46642208, 5.981843, -0.7073624, 0.59087014, -15.70879)
 script = ExtResource("6_1yi38")
 movement_mode = 2
 fish_scene = ExtResource("9_08ope")
