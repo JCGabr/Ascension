@@ -2,6 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://meecv4g0hsr" path="res://models/box/small_fuse_box.glb" id="1_wf5dr"]
 [ext_resource type="Script" uid="uid://cmn0rkhleo1ng" path="res://interactuable_objects/box.gd" id="2_2jpm0"]
+[ext_resource type="Script" uid="uid://wn2pygss68f2" path="res://scripts/ScreenInputRelay.gd" id="3_g3r2s"]
+[ext_resource type="PackedScene" uid="uid://ch1vqubdg5vk3" path="res://interactuable_objects/interruptor_puzzle/interruptors.tscn" id="3_o3shs"]
 
 [sub_resource type="Animation" id="Animation_2jpm0"]
 length = 0.001
@@ -58,11 +60,14 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_7lpfj"]
 size = Vector3(25.594925, 52.32718, 39.329483)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_o3shs"]
+viewport_path = NodePath("SubViewport")
+
 [node name="box" unique_id=1835283106 node_paths=PackedStringArray("animation_player") instance=ExtResource("1_wf5dr")]
 script = ExtResource("2_2jpm0")
 animation_player = NodePath("AnimationPlayer")
 
-[node name="fuse" parent="Sketchfab_model/Collada visual scene group" parent_id_path=PackedInt32Array(639435075) index="0" unique_id=1605009430]
+[node name="fuse" parent="Sketchfab_model/Collada visual scene group" parent_id_path=PackedInt32Array(2081230230) index="0" unique_id=1350506115]
 transform = Transform3D(-45.424274, -89.0878, -3.894151e-06, 0, -4.371139e-06, 100, -89.0878, 45.424274, 1.9855581e-06, 18.004131, 2.060793, -16.247723)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1" unique_id=1972321855]
@@ -71,6 +76,7 @@ libraries/ = SubResource("AnimationLibrary_2jpm0")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="2" unique_id=173264085]
 collision_layer = 5
+input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1702599482]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.691765, -0.5937042, 3.5250473)
@@ -78,3 +84,24 @@ shape = SubResource("BoxShape3D_7lpfj")
 
 [node name="Pivot" type="Node3D" parent="StaticBody3D" index="1" unique_id=929262172]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 75, 0, 10)
+
+[node name="Relay" type="Node3D" parent="StaticBody3D" index="2" unique_id=1103658198 node_paths=PackedStringArray("target_sprite", "target_viewport")]
+script = ExtResource("3_g3r2s")
+target_sprite = NodePath("../../Sprite3D")
+target_viewport = NodePath("../../SubViewport")
+
+[node name="SubViewport" type="SubViewport" parent="." index="3" unique_id=1073182861]
+size = Vector2i(460, 580)
+
+[node name="Control" parent="SubViewport" index="0" unique_id=1661450761 instance=ExtResource("3_o3shs")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 40.0
+offset_bottom = 40.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="." index="4" unique_id=960715063]
+transform = Transform3D(-3.4073028e-07, 0, 1, 0, 9, 0, -7.795, 0, -4.371139e-08, 12.606758, 0.680151, 2.7834816)
+texture = SubResource("ViewportTexture_o3shs")

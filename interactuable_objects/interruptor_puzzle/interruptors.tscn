@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://ch1vqubdg5vk3"]
+
+[ext_resource type="Script" uid="uid://8ww2e3oifpsp" path="res://interactuable_objects/interruptor_puzzle/interrumptors.gd" id="1_p7oqk"]
+
+[node name="Control" type="Control" unique_id=1661450761]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_p7oqk")
+button_size = Vector2(140, 180)

@@ -151,8 +151,7 @@ func _process_path(delta: float) -> void:
 		var move_dir = to_target.normalized()
 		_fish.global_position += move_dir * path_speed * delta
 		# Orienta la criatura hacia donde se mueve, con giro suave
-		var target_transform = _fish.global_transform.looking_at(_fish.global_position + move_dir, Vector3.UP)
-		_fish.global_transform.basis = _fish.global_transform.basis.slerp(target_transform.basis, delta * turn_smoothness)
+		_turn_towards(move_dir, delta)
 
 
 func _process_random(delta: float) -> void:
@@ -179,8 +178,21 @@ func _process_random(delta: float) -> void:
 		_fish.global_position += move_dir * random_speed * delta
 		# Giro suave: interpola la rotación en vez de "saltar" a la nueva
 		# dirección, así no se ve como que frena de golpe al cambiar de rumbo
-		var target_transform = _fish.global_transform.looking_at(_fish.global_position + move_dir, Vector3.UP)
-		_fish.global_transform.basis = _fish.global_transform.basis.slerp(target_transform.basis, delta * turn_smoothness)
+		_turn_towards(move_dir, delta)
+
+
+## Gira suavemente hacia move_dir sin tocar la escala del nodo.
+## global_transform.basis incluye la escala (fish_scale), y Basis.slerp()
+## exige bases normalizadas (puramente rotación), por eso separamos
+## rotación y escala en vez de interpolar el basis "crudo".
+func _turn_towards(move_dir: Vector3, delta: float) -> void:
+	var current_basis := _fish.global_transform.basis.orthonormalized()
+	var target_basis := Transform3D().looking_at(-move_dir, Vector3.UP).basis
+	# looking_at() de Transform3D asume -Z como "adelante"; si tu modelo
+	# mira hacia +Z, cambia la línea de arriba por: .looking_at(move_dir, Vector3.UP)
+	var new_basis := current_basis.slerp(target_basis, delta * turn_smoothness).orthonormalized()
+
+	_fish.global_transform = Transform3D(new_basis.scaled(Vector3.ONE * fish_scale), _fish.global_position)
 
 
 func _pick_random_point() -> Vector3:
