@@ -5,8 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://bqwv6gkc0318f" path="res://interactuable_objects/submarine.tscn" id="4_67hre"]
 [ext_resource type="PackedScene" uid="uid://efqnyx8d4u4a" path="res://interactuable_objects/enemies.tscn" id="5_vv62k"]
 [ext_resource type="Shader" uid="uid://imi872kt56kx" path="res://shader/pixel_tv.gdshader" id="6_1cmj6"]
-[ext_resource type="Script" uid="uid://cqqg5awdhsn1l" path="res://models/fish group/fish_school.gd" id="6_1yi38"]
+[ext_resource type="Script" uid="uid://cqqg5awdhsn1l" path="res://models/fish group/marine_creature.gd" id="6_1yi38"]
 [ext_resource type="PackedScene" uid="uid://d02t00wco5jby" path="res://models/fish group/the_fish_particle.glb" id="7_1yi38"]
+[ext_resource type="PackedScene" uid="uid://xckqb3ovwqeh" path="res://models/fish group/bobtail-squid/bobtail_squid.glb" id="8_rmuq2"]
+[ext_resource type="PackedScene" uid="uid://bm6ll8i7y0e7a" path="res://models/fish group/shadow_leviathan/shadow_leviathan.glb" id="9_08ope"]
+[ext_resource type="PackedScene" uid="uid://3fh6pyuor8ah" path="res://models/fish group/amplectobelua_symbrachiata/amplectobelua_symbrachiata.glb" id="10_8kq65"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vv62k"]
 sky_top_color = Color(0, 0.02745098, 0.23137255, 1)
@@ -115,6 +118,33 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="FishSchool" type="Node3D" parent="." unique_id=453130437]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -1.4351473, 0.30935836, -13.307428)
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -0.51281095, 0.30935836, -15.1953125)
 script = ExtResource("6_1yi38")
 fish_scene = ExtResource("7_1yi38")
+
+[node name="MiniSquid" type="Node3D" parent="." unique_id=1021357982]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0.6458452, -13.479355)
+script = ExtResource("6_1yi38")
+movement_mode = 2
+fish_scene = ExtResource("8_rmuq2")
+path_speed = 1.5
+loop_from_start = false
+random_area = Vector3(8, 7, 5)
+turn_smoothness = 2.0
+
+[node name="Criatura1" type="Node3D" parent="." unique_id=1589791879]
+transform = Transform3D(6, 0, 0, 0, 5.981843, 0.46642208, 0, -0.46642208, 5.981843, -0.7073624, 0.59087014, -12.549095)
+script = ExtResource("6_1yi38")
+movement_mode = 2
+fish_scene = ExtResource("9_08ope")
+random_area = Vector3(6, 8, 6)
+turn_smoothness = 2.0
+
+[node name="Criatura2" type="Node3D" parent="." unique_id=166196550]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.772215)
+visible = false
+script = ExtResource("6_1yi38")
+movement_mode = 2
+fish_scene = ExtResource("10_8kq65")
+random_area = Vector3(6, 7, 6)
+turn_smoothness = 2.0
