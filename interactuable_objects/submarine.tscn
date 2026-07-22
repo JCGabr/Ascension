@@ -17,10 +17,13 @@ size = Vector3(0.30394745, 1.4017334, 4.3434753)
 size = Vector3(1.920639, 1.5, 0.8316269)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_btcgt"]
-size = Vector3(2.045578, 1.9989548, 5.917147)
+size = Vector3(2.045578, 1.9989548, 2.5440228)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4ck0j"]
 size = Vector3(1.6305237, 0.38560486, 5.234619)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_75kqj"]
+size = Vector3(2.053711, 1.4803467, 1)
 
 [node name="submarine" unique_id=340219670 instance=ExtResource("1_t88qw")]
 
@@ -43,7 +46,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.052757263, 0.27685547, 2.03
 shape = SubResource("BoxShape3D_vqmbe")
 
 [node name="pared_delantera" type="CollisionShape3D" parent="StaticBody3D" index="4" unique_id=1787579219]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01776886, 0.07639694, -4.187834)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01776886, 0.07639694, -2.5012717)
 shape = SubResource("BoxShape3D_btcgt")
 
 [node name="techo" type="CollisionShape3D" parent="StaticBody3D" index="5" unique_id=1502543978]
@@ -60,3 +63,13 @@ transform = Transform3D(-0.01, 0, -8.7422775e-10, 0, 0.01, 0, 8.7422775e-10, 0, 
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.9841517, 0)
 spot_range = 6.0
 spot_angle = 60.0
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." index="3" unique_id=1731987621]
+collision_layer = 5
+
+[node name="Pivot" type="Node3D" parent="StaticBody3D2" index="0" unique_id=1220915673]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.01776886, 0.121824235, -2.1108704)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" index="1" unique_id=2021141777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05810547, 0.24017334, -1.6575456)
+shape = SubResource("BoxShape3D_75kqj")
